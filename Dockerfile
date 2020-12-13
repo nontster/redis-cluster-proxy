@@ -1,4 +1,4 @@
-[200~FROM alpine:3.11 as build
+FROM alpine:3.11 as build
 
 RUN apk add --no-cache gcc musl-dev linux-headers openssl-dev make
 

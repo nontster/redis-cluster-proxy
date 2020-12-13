@@ -51,6 +51,9 @@ And, finally, if you want to launch tests, just type:
 
 As you can see, the make syntax (but also the output style) is the same used in Redis, so it will be familiar to Redis users.
 
+## Build Docker image
+`% make -f makefile.docker docker`
+
 # Install
 
 In order to install Redis Cluster Proxy into /usr/local/bin just use:
