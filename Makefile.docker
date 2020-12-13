@@ -1,0 +1,21 @@
+.PHONY: docker
+
+NAME   := ${DOCKER_REPO}/redis-cluster-proxy
+TAG    := $(shell cat src/version.h | cut -d ' ' -f 3 | tr -d \")
+IMG    := ${NAME}:${TAG}
+LATEST := ${NAME}:latest
+PROD   := ${NAME}:production
+BUILD  := ${NAME}:build
+
+docker_test:
+	docker build -t ${BUILD} .
+
+docker:
+	git clean -dfx
+	docker build -t ${IMG} .
+	docker tag ${IMG} ${BUILD}
+
+docker_push:
+	docker tag ${IMG} ${PROD}
+	docker push ${PROD}
+	oc import-image redis-proxy:production # that thing is to trigger a deploy with openshift.
