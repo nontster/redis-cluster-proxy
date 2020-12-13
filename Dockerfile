@@ -1,4 +1,4 @@
-FROM alpine:3.11 as build
+FROM alpine:3.12.2 as build
 
 RUN apk add --no-cache gcc musl-dev linux-headers openssl-dev make
 
@@ -14,7 +14,7 @@ WORKDIR /opt
 USER app
 RUN [ "make", "install" ]
 
-FROM alpine:3.11 as runtime
+FROM alpine:3.12.2 as runtime
 
 RUN apk add --no-cache libstdc++
 RUN apk add --no-cache strace
